@@ -23,7 +23,7 @@ REPOSITORY             TAG                 IMAGE ID            CREATED          
 melser/unifi-video   v3.9.3              1cbeb1e369da        44 minutes ago      869.9 MB
 ```
 
-- (Optional) Download\Save `run.sh` from [here](https://raw.githubusercontent.com/exsilium/docker-unifi-video/v3.8.1/run.sh)
+- (Optional) Download\Save `run.sh` from [here](https://raw.githubusercontent.com/macmedia/unifi-docker/master/run.sh)
 - Create the following host data directories under `~/Applications/unifi-video`
     - `mkdir mongodb`
     - `mkdir unifi-video`
