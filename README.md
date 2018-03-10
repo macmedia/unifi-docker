@@ -1,9 +1,5 @@
 # Unifi-Video
 
-[![Docker Build Status](https://img.shields.io/docker/build/exsilium/unifi-video.svg)](https://hub.docker.com/r/exsilium/unifi-video/)
-[![Docker Automated build](https://img.shields.io/docker/automated/exsilium/unifi-video.svg)](https://hub.docker.com/r/exsilium/unifi-video/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/exsilium/unifi-video.svg)](https://hub.docker.com/r/exsilium/unifi-video/)
-[![Docker Stars](https://img.shields.io/docker/stars/exsilium/unifi-video.svg)](https://hub.docker.com/r/exsilium/unifi-video/)
 
 ## Instructions for use
 
@@ -19,12 +15,12 @@ Because /usr/local is reserved for Docker, the example demonstrates installation
 **NB!** If you receive permission errors when executing commands, precede them with `sudo`
 
 - Create the `~/Applications/unifi-video` directory
-- Run in Terminal: `docker pull exsilium/unifi-video:v3.8.1`
+    
 
 ```
 `$ docker images
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-exsilium/unifi-video   v3.8.1              1cbeb1e369da        44 minutes ago      869.9 MB
+melser/unifi-video   v3.9.3              1cbeb1e369da        44 minutes ago      869.9 MB
 ```
 
 - (Optional) Download\Save `run.sh` from [here](https://raw.githubusercontent.com/exsilium/docker-unifi-video/v3.8.1/run.sh)
@@ -32,8 +28,8 @@ exsilium/unifi-video   v3.8.1              1cbeb1e369da        44 minutes ago   
     - `mkdir mongodb`
     - `mkdir unifi-video`
     - `mkdir log`
-- Review and edit `run.sh` to make sure the BASEDIR and IP are reflecting your setup. The default 0.0.0.0 binds the ports to all interfaces.
-- Execute `./run.sh` to run the container or execute `docker run` with the appropriate parameters.
+
+- Execute `./run.sh -v 2.9.3` to run the container or create the image.
 
 ``` 
 `Checking for Host data volumes: MongoDB-OK | Unifi-Video-OK | Log-OK
@@ -53,15 +49,9 @@ By default, Docker provides network isolation and due to that the automatic disc
 **NB!** Make sure to read release notes prior to upgrade!
 **NB!** Note that, when upgrading to v3.8.1, a new port 7442 was added for secure camera communications. Make sure docker maps this new port when starting and that you handle any additional routing settings you may have to that port.
 
-- Stop the running container
-- Backup your Host Data Volumes (`~/Applications/unifi-video`)
-- Pull the latest image `docker pull exsilium/unifi-video:v3.8.1`
-- Rename the old container to something else than `unifi-video`. Refer to [docker rename](https://docs.docker.com/engine/reference/commandline/rename/) command
-- Update the `run.sh` to reflect the new version (v3.8.1)
-- Start the new image against the same Host Data Volumes by using `run.sh` or manually calling `docker run` with appropriate arguments.
 
 ## Need help?
 
-If you have questions, comments, concerns. Did you find something not working or if you just need help, please [file a Github Issue](https://github.com/exsilium/docker-unifi-video/issues) and I'll do my best to help you.
+If you have questions, comments, concerns. Did you find something not working or if you just need help, please [file a Github Issue](https://github.com/macmedia/unifi-docker/issues) and I'll do my best to help you.
 
 Please don't use Docker Hub comments section for reaching out!
