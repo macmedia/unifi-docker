@@ -1,15 +1,15 @@
-# This Dockerfile has been created based on the following work by Justin Ouellette:
-# https://github.com/jstn/docker-unifi-video/blob/master/Dockerfile (0e8dbcc)
-
 # Xenial Xerus
 FROM phusion/baseimage:latest
+ARG ver=3.9.3
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Bring in the latest and greatest
-RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
-RUN curl -sS https://dl.ubnt.com/firmwares/ufv/v3.8.1/unifi-video.Ubuntu16.04_amd64.v3.8.1.deb > /tmp/unifi-video.deb
+# Bring in the latest and greatest
+RUN apt-get dist-upgrade
+RUN apt-get update --fix-missing && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+
+RUN curl -sS https://dl.ubnt.com/firmwares/ufv/v$ver/unifi-video.Ubuntu16.04_amd64.v$ver.deb > /tmp/unifi-video.deb
 
 # Install unifi-video dependencies and the core package itself
 RUN apt-get install -y mongodb-server openjdk-8-jre-headless jsvc sudo
@@ -32,13 +32,6 @@ EXPOSE 6666 7080 7442 7443 7445 7446 7447
 
 CMD ["/sbin/my_init"]
 
-# Make sure you have created the target directories:
-#
-# 1. ~/Applications/unifi-video/unifi-video
-# 2. ~/Applications/unifi-video/mongodb
-# 3. ~/Applications/unifi-video/log
-#
-# Run container by:
 # docker run -d --privileged \
 # -v ~/Applications/unifi-video/mongodb:/var/lib/mongodb \
 # -v ~/Applications/unifi-video/unifi-video:/var/lib/unifi-video \
@@ -50,6 +43,6 @@ CMD ["/sbin/my_init"]
 # -p 7445:7445 \
 # -p 7446:7446 \
 # -p 7447:7447 \
-# --name unifi-video \
+# --name unifi-video_3.9.3 \
 # --restart=unless-stopped \
-# exsilium/unifi-video:v3.8.1
+# melser/unifi-video:3.9.3
